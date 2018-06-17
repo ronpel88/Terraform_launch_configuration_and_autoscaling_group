@@ -1,6 +1,6 @@
 # using aws provider
 provider "aws" {
-  region     = "${var.region}"
+  region = "${var.region}"
 }
 
 # define ubuntu ami
@@ -9,7 +9,7 @@ data "aws_ami" "ubuntu" {
 
   filter {
     name   = "name"
-    values = [${var.image_type}]
+    values = ["${var.image_type}"]
   }
 
   filter {
@@ -31,7 +31,7 @@ resource "aws_launch_configuration" "by_instance_type" {
 
 # create autoscaling group for each subnet and launch configuration
 resource "aws_autoscaling_group" "by_subnet_and_launch_configuration" {
-  count = "${length(var.subnet_ids)*length(var.instance_types_and_prices)}"
+  count                = "${length(var.subnet_ids)*length(var.instance_types_and_prices)}"
   name                 = "asg_${count.index}"
   launch_configuration = "${element(aws_launch_configuration.by_instance_type.*.name, count.index)}"
   min_size             = 1

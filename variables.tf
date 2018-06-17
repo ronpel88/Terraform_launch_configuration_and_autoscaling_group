@@ -2,9 +2,6 @@
 Variables are defined here
 */
 
-variable "access_key" {}
-variable "secret_key" {}
-
 variable "region" {}
 
 variable "subnet_ids" {
