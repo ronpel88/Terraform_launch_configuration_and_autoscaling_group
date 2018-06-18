@@ -36,7 +36,7 @@ resource "aws_autoscaling_group" "by_subnet_and_launch_configuration" {
   launch_configuration = "${element(aws_launch_configuration.by_instance_type.*.name, count.index)}"
   min_size             = 1
   max_size             = 2
-  vpc_zone_identifier  = "${list(element(var.subnet_ids, count.index))}"
+  vpc_zone_identifier  = "${list(var.subnet_ids[count.index/length(var.instance_types_and_prices)])}"
 
   lifecycle {
     create_before_destroy = true
