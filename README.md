@@ -19,6 +19,7 @@ Here we implemented launch configuration & autoscaling group
 
 In order to run this, there are a few things that need to be in place:
 
+* make sure you have .aws/credentials configured
 * make sure you have [terraform installed](https://www.terraform.io/intro/getting-started/install.html)
 * run `terraform init` 
 
